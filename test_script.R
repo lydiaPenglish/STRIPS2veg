@@ -1,1 +1,2 @@
-rdm <- read.csv("rdm.csv")
+rdm <- read.csv("site_info/rdm.csv")
+
