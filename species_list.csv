@@ -1,4 +1,4 @@
-full_name,common_name,family,native,life_cycle,group,code,alternate_name
+full_name,common_name,family,native,life_cycle,group,speciesID,alternate_name
 abutilon theophrasti,velvetleaf,malvaceae,introduced,annual,forb,abuth,buttonweed
 achillea millefolium,western yarrow,asteraceae,native,perennial,forb,achmi,
 agastache foeniculum,anise hyssop,lamiaceae,native,perennial,forb,agafo,blue giant hyssop
