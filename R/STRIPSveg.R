@@ -2,7 +2,7 @@
 #'
 #' The STRIPSveg package provides STRIPS vegetation data.
 #'
-#' @docType STRIPSveg
+#' @docType package
 #' @name STRIPSveg
 #'
 NULL
