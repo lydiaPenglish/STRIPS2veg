@@ -1,4 +1,4 @@
-Package: STRIPSveg
+Package: STRIPS2veg
 Title: Data for STRIPS vegetation study
 Version: 0.1
 Authors@R: c(
