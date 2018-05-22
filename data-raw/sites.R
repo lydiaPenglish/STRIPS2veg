@@ -22,16 +22,12 @@ read_dir = function(path, pattern, into) {
 # Above modified from https://gist.github.com/jarad/8f3b79b33489828ab8244e82a4a0c5b3
 #######################################################################
 
-sites <- read_dir(path = "site",
+sites <- read_dir(path = "sites",
          pattern = "*.csv",
          into = c("site","siteID","csv")) %>%
 
-  # A fix to deal with the number_quadrats variable name differences
-  mutate(number_quadrats = ifelse(is.na(quadrat_number), number_quadrats, quadrat_number),
-         number_quadrats = ifelse(is.na(number_quadrat), number_quadrats, number_quadrat),
-
-         # Make unique stripID
-         stripID = formatC(stripID, width = 2, format = "d", flag = "0"), # add preceeding zeros for proper ordering
+  # Make unique stripID
+  mutate(stripID = formatC(stripID, width = 2, format = "d", flag = "0"), # add preceeding zeros for proper ordering
          stripID = paste(siteID, stripID, sep="")) %>%
 
   select(stripID, siteID, number_quadrats, area, perimeter)
