@@ -12,4 +12,4 @@
 #'   \item{perimeter}{Perimeter of the strip}
 #' }
 #'
-"sites"
+"strips"
