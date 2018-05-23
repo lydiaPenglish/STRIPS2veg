@@ -9,8 +9,8 @@
   \item{stripID}{A unique code for the strip}
   \item{siteID}{A unique code for the site}
   \item{number_quadrats}{The number of quadrats (survey locations) in that strip}
-  \item{area}{Area of the strip}
-  \item{perimeter}{Perimeter of the strip}
+  \item{area}{Area of the strip (m^2)}
+  \item{perimeter}{Perimeter of the strip (m)}
 }}
 \usage{
 strips
