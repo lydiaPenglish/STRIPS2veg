@@ -1,14 +1,16 @@
 library("dplyr")
 library("tidyr")
+library("readr")
 
 my_read_csv = function(f, into) {
-  readr::read_csv(f,
-                  col_types = cols(stripID         = col_integer(),
-                                        area            = col_double(),
-                                        perimeter       = col_double(),
-                                        number_quadrats = col_integer())) %>%
-    mutate(file=f) %>%
-    separate(file, into)
+  readr::read_csv(
+    file = f,
+    col_types = readr::cols(stripID         = readr::col_integer(),
+                            area            = readr::col_double(),
+                            perimeter       = readr::col_double(),
+                            number_quadrats = readr::col_integer())) %>%
+    dplyr::mutate(file=f) %>%
+    tidyr::separate(file, into)
 }
 
 read_dir = function(path, pattern, into) {
@@ -23,13 +25,16 @@ read_dir = function(path, pattern, into) {
 #######################################################################
 
 strips <- read_dir(path = "strips",
-         pattern = "*.csv",
-         into = c("site","siteID","csv")) %>%
-
+                   pattern = "*.csv",
+                   into = c("site","siteID","csv")) %>%
+  
   # Make unique stripID
   mutate(stripID = formatC(stripID, width = 2, format = "d", flag = "0"), # add preceeding zeros for proper ordering
-         stripID = paste(siteID, stripID, sep="")) %>%
-
+         stripID = paste(siteID, stripID, sep=""),
+         stripID = toupper(stripID),
+         
+         siteID = toupper(siteID)) %>%
+  
   select(stripID, siteID, number_quadrats, area, perimeter)
 
 devtools::use_data(strips, overwrite = TRUE)
