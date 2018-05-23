@@ -42,4 +42,4 @@ bue <- read.csv("data-raw/quadrat/bue_quadrats.csv", header = T)
 bue$eastingA <- anonymizeGPS(bue$easting, "BUE", direction = "easting")
 bue$northingA <- anonymizeGPS(bue$northing, "BUE", direction = "northing")
 bue <- select(bue, quadratID, eastingA, northingA)
-# And then write over the original csv file in the folder with this new one
+# And then I can write over the original csv file in the folder with this new one?
