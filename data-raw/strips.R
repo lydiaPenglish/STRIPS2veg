@@ -30,7 +30,10 @@ strips <- read_dir(path = "strips",
   
   # Make unique stripID
   mutate(stripID = formatC(stripID, width = 2, format = "d", flag = "0"), # add preceeding zeros for proper ordering
-         stripID = paste(siteID, stripID, sep="")) %>%
+         stripID = paste(siteID, stripID, sep=""),
+         stripID = toupper(stripID),
+         
+         siteID = toupper(siteID)) %>%
   
   select(stripID, siteID, number_quadrats, area, perimeter)
 
