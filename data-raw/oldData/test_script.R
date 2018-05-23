@@ -1,7 +1,7 @@
 library(tidyverse)
 library(iNEXT)
 
-SH <- read.csv("oldData/practiceSHData.csv", header = T)
+SH <- read.csv("data-raw/oldData/practiceSHData.csv", header = T)
 str(SH)
 
 ### clean up datafram
@@ -181,7 +181,7 @@ estimateD(m2011, datatype = "incidence_freq", base = "size", level = NULL, conf 
 
 ### adding data for 24 quadrats vs 12 ####
 
-SH24 <- read.csv("oldData/practiceSHData_24.csv", header = T)
+SH24 <- read.csv("data-raw/oldData/practiceSHData_24.csv", header = T)
 SH24[is.na(SH24)]<-0
 SH24[, 4:194] <- sapply(SH24[, 4:194], as.numeric)
 str(SH24)
@@ -232,17 +232,51 @@ names(mat_2010_24) <- c("Bass1", "Bass1_24", "Orb1", "Orb1_24", "Int2",
 
 mat_2011_24 <- list(mBass1_2011, mBass1_2011_24, mOrb1_2011, mOrb1_2011_24, mInt2_2011,
                     mInt2_2011_24)
-names(mat_2011_24) <- c("Bass1", "Bass1_24", "Orb1", "Orb1_24", "Int2",
-                        "Int2_24")
+names(mat_2011_24) <-  c("Bass1", "Bass1_24", "Orb1", "Orb1_24", "Int2",
+                         "Int2_24")
 
 m2010_24 <- lapply(mat_2010_24, as.incfreq)
 i2010q0 <- iNEXT(m2010_24, q=0, datatype = "incidence_freq")
-ggiNEXT(i2010q0)
+ggiNEXT(i2010q0)+
+  scale_shape_manual(values = c(19,19,19,19,19,19))+ 
+  ggtitle("2010 iNEXT curves for species richness q=0")+
+  theme(plot.title = element_text(hjust = 0.5))
 
 m2011_24 <- lapply(mat_2011_24, as.incfreq)
 i2011q0 <- iNEXT(m2011_24, q=0, datatype = "incidence_freq")
-ggiNEXT(i2011q0)
+i2011q <- iNEXT(m2011_24, q=c(0,1,2), datatype = "incidence_freq")
+ggiNEXT(i2011q0)+
+  scale_shape_manual(values = c(19,19,19,19,19,19))+
+  ggtitle("2011 iNEXT curves for species richness q=0")+
+  theme(plot.title = element_text(hjust = 0.5))
 
 ChaoRichness(m2010_24, datatype = "incidence_freq", conf = 0.95)
 ChaoRichness(m2011_24, datatype = "incidence_freq", conf = 0.95)
+ChaoShannon(m2010_24, datatype = "incidence_freq", transform = T, conf = 0.95)
+ChaoShannon(m2011_24, datatype = "incidence_freq", transform = T, conf = 0.95)
 estimateD(m2010_24, datatype="incidence_freq")
+
+
+
+# attempting to facet by something else
+
+mat_2011_24[[1]]
+
+i2011q %>%
+  mutate(site = fct_recode(i2011q[[1]][[1]],
+           "Bass1" = "Bass",
+           "Bass1_24" = "Bass", 
+           "Int2" ="Int",
+           "Int2_24" = "Int",
+           "Orb1" = "Orb",
+           "Orb1_24" = "Orb"))
+
+class(i2011q)
+
+         i2011q[[1]]
+
+i2011q[[1]][[1]] 
+
+ggiNEXT(i2011q, type=1, facet.var="site") +
+  facet_wrap(~site)
+

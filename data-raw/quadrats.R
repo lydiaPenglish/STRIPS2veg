@@ -35,6 +35,4 @@ quadrats <- read_dir(path = "quadrat",
   
   select(quadratID, siteID, easting, northing)
 
-## Error here that object "quadratID" not found in mutate function
-
 devtools::use_data(quadrats, overwrite = TRUE)
