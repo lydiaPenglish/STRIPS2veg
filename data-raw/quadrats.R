@@ -1,14 +1,16 @@
-library(STRIPS2PRIVATE)
-library(dplyr)
-library(tidyr)
+library("STRIPS2PRIVATE")
+library("dplyr")
+library("tidyr")
+library("readr")
 
 my_read_csv = function(f, into) {
-  readr::read_csv(f,
-                  col_types = cols(quadratID        = col_integer(),
-                                   easting            = col_double(),
-                                   northing       = col_double())) %>%
-    mutate(file=f) %>%
-    separate(file, into)
+  readr::read_csv(
+    file = f,
+    col_types = cols(quadratID = readr::col_character(),
+                     easting   = readr::col_double(),
+                     northing  = readr::col_double())) %>%
+    dplyr::mutate(file=f) %>%
+    tidyr::separate(file, into)
 }
 
 read_dir = function(path, pattern, into) {
@@ -24,13 +26,14 @@ read_dir = function(path, pattern, into) {
 
 quadrats <- read_dir(path = "quadrat",
                   pattern = "*.csv",
-                  into = c("siteID","quadrats","csv")) %>%
+                  into = c("quadrat","siteID","quadrats","csv")) %>%
   
-  # Make unique quadratID
-  mutate(quadratID = formatC(quadratID, width = 2, format = "d", flag = "0"), # add preceeding zeros for proper ordering
-         quadratID = paste(siteID, quadratID, sep="")) %>%
+  mutate(
+    siteID = factor(toupper(siteID)),
+    easting = anonymizeGPS(easting, siteID, "easting"),
+    northing = anonymizeGPS(northing, siteID, "northing")) %>%
   
-  select(quadratID, easting, northing)
+  select(quadratID, siteID, easting, northing)
 
 ## Error here that object "quadratID" not found in mutate function
 
