@@ -38,11 +38,3 @@ quadrats <- read_dir(path = "quadrat",
 ## Error here that object "quadratID" not found in mutate function
 
 devtools::use_data(quadrats, overwrite = TRUE)
-
-## an example of how I would anonymize GPS for an individual site...
-
-bue <- read.csv("data-raw/quadrat/bue_quadrats.csv", header = T)
-bue$eastingA <- anonymizeGPS(bue$easting, "BUE", direction = "easting")
-bue$northingA <- anonymizeGPS(bue$northing, "BUE", direction = "northing")
-bue <- select(bue, quadratID, eastingA, northingA)
-# And then write over the original csv file in the folder with this new one
