@@ -280,3 +280,6 @@ i2011q[[1]][[1]]
 ggiNEXT(i2011q, type=1, facet.var="site") +
   facet_wrap(~site)
 
+i2011q0[[2]][[1]]
+print.iNEXT(i2011q0)
+DataInfo(mat_2011, datatype = "incidence_freq")
