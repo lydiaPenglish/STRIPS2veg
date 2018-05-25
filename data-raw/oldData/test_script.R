@@ -33,21 +33,39 @@ str(SH.2)
 
 ### have presence/absence info for all 4 years, now splitting up
 
-# function to turn dataframes into matrices
-matrix.please<-function(x) {
-  m<-as.matrix(x[,-1])
-  rownames(m)<-x[,1]
+# function to generate matrix for each watershed in every year
+make.matrix <- function(x){
+  z <- select(SH.2, species, starts_with(x))
+  m <- as.matrix(z[,-1])
+  rownames(m) <- z[,1]
   m
 }
 
+mBass1_08 <- make.matrix("Bass1_2008") # this works 
+
+treatments08 <- lapply()
+str_subset(names(SH.2), "_.*")
+
+str_sub(names(SH.2), "\\_$")
+gsub("_.*", "", names(SH.2))
+str_extract(names(SH.2, "_.*"))
+
 ## 2008
 
-Bass1_2008 <- select(SH.2, species, starts_with("Bass1_2008"))
-mBass1_2008 <- matrix.please(Bass1_2008)
-Bass2_2008 <- select(SH.2, species, starts_with("Bass2_2008"))
-mBass2_2008 <- matrix.please(Bass2_2008)
-Bass3_2008 <- select(SH.2, species, starts_with("Bass3_2008"))
-mBass3_2008 <- matrix.please(Bass3_2008)
+mBass1_08 <- select(SH.2, species, starts_with("Bass1_2008")) %>%
+  matrix.please()
+mBass2_08 <- select(SH.2, species, starts_with("Bass2_2008")) %>%
+  matrix.please()
+mBass3_08 <- select(SH.2, species, starts_with("Bass3_2008")) %>%
+  matrix.please()
+
+
+mBass1_09 <- make.matrix("Bass1_2009")
+
+x <- c("Bass4_2008", "Int1_2008", "Orb1_2008")
+
+
+
 Bass4_2008 <- select(SH.2, species, starts_with("Bass4_2008"))
 mBass4_2008 <- matrix.please(Bass4_2008)
 Bass5_2008 <- select(SH.2, species, starts_with("Bass5_2008"))
@@ -223,10 +241,8 @@ mInt2_2011_24 <- matrix.please(Int2_2011_24)
 
 # 2010
 
-mat_2010_24 <- list(mBass1_2010, mBass1_2010_24, mOrb1_2010, mOrb1_2010_24, mInt2_2010,
-                 mInt2_2010_24)
-names(mat_2010_24) <- c("Bass1", "Bass1_24", "Orb1", "Orb1_24", "Int2",
-                     "Int2_24")
+mat_2010_24 <- list(Bass1 = mBass1_2010, Bass1_24 = mBass1_2010_24, Orb1 = mOrb1_2010, 
+                    Orb1_24 = mOrb1_2010_24, Int2 = mInt2_2010, Int2_24 = mInt2_2010_24)
 
 # 2011
 
@@ -256,30 +272,74 @@ ChaoShannon(m2010_24, datatype = "incidence_freq", transform = T, conf = 0.95)
 ChaoShannon(m2011_24, datatype = "incidence_freq", transform = T, conf = 0.95)
 estimateD(m2010_24, datatype="incidence_freq")
 
+#### attempting to analyze
 
+a08 <- ChaoRichness(m2008, datatype = "incidence_freq", conf = 0.95)
+a08 <- tibble::rownames_to_column(a08, var = "site")
+a08$site <- as.factor(a08$site)
+a09 <- ChaoRichness(m2009, datatype = "incidence_freq", conf = 0.95)
+a09 <- tibble::rownames_to_column(a09, var = "site")
+a09$site <- as.factor(a09$site)
+a10 <- ChaoRichness(m2010, datatype = "incidence_freq", conf = 0.95)
+a10 <- tibble::rownames_to_column(a10, var = "site")
+a10$site <- as.factor(a10$site)
+a11 <- ChaoRichness(m2011, datatype = "incidence_freq", conf = 0.95)
+a11 <- tibble::rownames_to_column(a11, var = "site")
+a11$site <- as.factor(a11$site)
+
+at <- bind_rows(a08, a09, a10, a11)
+str(at)
+
+at <- separate(at, col = site, into = c("site", "year"), sep = "\\_", remove = T)
+
+aov.test <- aov(Estimator ~ site, data = at)
+summary.aov(aov.test)
+aov.year <- aov(Estimator ~ year, data = at)
+summary.aov(aov.year)
+aov.both <- aov(Estimator ~ site*year, data = at)
+summary.aov(aov.both)
+
+treatment <- as_tibble(rep(c(1,2,3,3,2,2,1,1,3),4))
+names(treatment) <- "treatment"
+treatment
+at<- bind_cols(at, treatment)
+at$treatment <- as.factor(at$treatment)
+str(at)
+
+aov.trt <- aov(Estimator ~ treatment, data = at)
+summary.aov(aov.trt)
+coefficients(aov.trt)
+lsmeans(aov.trt, "treatment")
+
+aov.trtyr <- aov(Estimator ~ treatment*year, data = at)
+summary(aov.trtyr)
+
+block <- as_tibble(rep(c("c", "c", "c", "d", "d", "a", "a", "b", "b"), 4))
+names(block) <- "block"
+at <- bind_cols(at, block)
+at$block <- as.factor(at$block)
+str(at)
+
+aov.ibd(Estimator ~ site+block, data = at, specs = site)
+library(ibd)
+data(ibddata)
+aov.ibd(Estimator ~ site+block, data = at, specs = site)
 
 # attempting to facet by something else
 
-mat_2011_24[[1]]
+# mat_2011_24[[1]]
+# i2011q %>%
+#   mutate(site = fct_recode(i2011q[[1]][[1]],
+#            "Bass1" = "Bass",
+#            "Bass1_24" = "Bass", 
+#            "Int2" ="Int",
+#            "Int2_24" = "Int",
+#            "Orb1" = "Orb",
+#            "Orb1_24" = "Orb"))
+# class(i2011q)
+#          i2011q[[1]]
+# i2011q[[1]][[1]] 
+# ggiNEXT(i2011q, type=1, facet.var="site") +
+#   facet_wrap(~site)
 
-i2011q %>%
-  mutate(site = fct_recode(i2011q[[1]][[1]],
-           "Bass1" = "Bass",
-           "Bass1_24" = "Bass", 
-           "Int2" ="Int",
-           "Int2_24" = "Int",
-           "Orb1" = "Orb",
-           "Orb1_24" = "Orb"))
 
-class(i2011q)
-
-         i2011q[[1]]
-
-i2011q[[1]][[1]] 
-
-ggiNEXT(i2011q, type=1, facet.var="site") +
-  facet_wrap(~site)
-
-i2011q0[[2]][[1]]
-print.iNEXT(i2011q0)
-DataInfo(mat_2011, datatype = "incidence_freq")
