@@ -132,7 +132,14 @@ trts24 <- word(names(SH24.3), 1, -2,  sep = "\\_") %>%
 all_trts24 <- lapply(trts24, make.matrix24) 
 names(all_trts24) <- trts24
 
-### subset for each year
+### subset for each year and combine with quadrat data for 12 quadrats
+
+mat_2010_24 <- do.call(c, list(all_trts24[str_subset(trts24, "2010$")], 
+                                mat_2010[c(1, 7,8)]))
+mat_2011_24 <- do.call(c, list(all_trts24[str_subset(trts24, "2011$")],
+                                mat_2011[c(1,7,8)]))
+names(mat_2010_24) <- c("Bass1_24", "Int2_24", "Orb1_24", "Bass1", "Int2", "Orb1")
+names(mat_2011_24) <- c("Bass1_24", "Int2_24", "Orb1_24", "Bass1", "Int2", "Orb1")
 
 
 m2010_24 <- lapply(mat_2010_24, as.incfreq)
@@ -209,6 +216,28 @@ library(ibd)
 data(ibddata)
 aov.ibd(Estimator ~ site+block, data = at, specs = site)
 
+# trying to fit curves to estimate a slope parameter
+# gather a set of points 
+
+curveTest <- i2011q0[["iNextEst"]][["Orb1_24"]]
+plot(qD ~ t, data = curveTest)
+plot(log(qD) ~ log(t), data = curveTest)
+fit <- lm(formula = log(qD) ~ log(t), data = curveTest)
+summary(fit)
+curveTest2 <- i2011q0[["iNextEst"]][["Orb1"]]
+fit2 <- lm(formula = log(qD) ~ log(t), data = curveTest2)
+plot(fit, which = 1)
+plot(fit2, which = 1)
+fit2$coefficients
+fit$coefficients
+
+
+summary(fit2)plot(fit, which = 1)
+coef(fit)
+
+
+lm(formula = qD ~ t, data = curveTest) %>%
+  summary()
 # attempting to facet by something else
 
 # mat_2011_24[[1]]
