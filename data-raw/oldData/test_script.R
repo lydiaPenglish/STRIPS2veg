@@ -2,8 +2,10 @@ library(tidyverse)
 library(iNEXT)
 
 SH <- read.csv("data-raw/oldData/practiceSHData.csv", header = T)
+SH24 <- read.csv("data-raw/oldData/practiceSHData_24.csv", header = T)
 
-### clean up datafram
+# Clean up dataframes -----------------------------------------------------
+# 12 quadrats
 # Make NAs 0
 SH[is.na(SH)]<-0
 SH[, 4:170] <- sapply(SH[, 4:170], as.numeric)
@@ -58,46 +60,7 @@ mat_2009 <- all_trts[str_subset(trts, "2009$")]
 mat_2010 <- all_trts[str_subset(trts, "2010$")]
 mat_2011 <- all_trts[str_subset(trts, "2011$")]
 
-### iNEXT
-
-# plots for each year ####
-
-m2008 <- lapply(mat_2008, as.incfreq)
-i2008q0 <- iNEXT(m2008, q=0, datatype = "incidence_freq")
-i2008q1 <- iNEXT(m2008, q=1, datatype = "incidence_freq")
-i2008q2 <- iNEXT(m2008, q=2, datatype = "incidence_freq")
-ggiNEXT(i2008q0)
-ggiNEXT(i2008q1)
-
-m2009 <- lapply(mat_2009, as.incfreq)
-i2009q0 <- iNEXT(m2009, q=0, datatype = "incidence_freq")
-i2009q1 <- iNEXT(m2009, q=1, datatype = "incidence_freq")
-i2009q2 <- iNEXT(m2009, q=2, datatype = "incidence_freq")
-ggiNEXT(i2009q0)
-
-m2010 <- lapply(mat_2010, as.incfreq)
-i2010q0 <- iNEXT(m2010, q=0, datatype = "incidence_freq")
-i2010q1 <- iNEXT(m2010, q=1, datatype = "incidence_freq")
-i2010q2 <- iNEXT(m2010, q=2, datatype = "incidence_freq")
-ggiNEXT(i2010q0)
-
-m2011 <- lapply(mat_2011, as.incfreq)
-i2011q0 <- iNEXT(m2011, q=0, datatype = "incidence_freq")
-i2011q1 <- iNEXT(m2011, q=1, datatype = "incidence_freq")
-i2011q2 <- iNEXT(m2011, q=2, datatype = "incidence_freq")
-ggiNEXT(i2011q0)
-
-### testing out other package functions
-ChaoRichness(m2011, datatype = "incidence_freq", conf = 0.95)
-ChaoShannon(m2011, datatype = "incidence_freq", transform = T, conf= 0.95)
-ChaoSimpson(m2011, datatype="incidence_freq", transform = T, conf = 0.95, B = 200)
-DataInfo(m2011, datatype="incidence_freq")
-estimateD(m2011, datatype = "incidence_freq", base = "size", level = NULL, conf = 0.95)
-
-
-### adding data for 24 quadrats vs 12 ####
-
-SH24 <- read.csv("data-raw/oldData/practiceSHData_24.csv", header = T)
+# 24 quadrats
 SH24[is.na(SH24)]<-0
 SH24[, 4:194] <- sapply(SH24[, 4:194], as.numeric)
 #unique24 <- setdiff(names(SH24), names(SH))
@@ -139,12 +102,49 @@ names(all_trts24) <- trts24
 ### subset for each year and combine with quadrat data for 12 quadrats
 
 mat_2010_24 <- do.call(c, list(all_trts24[str_subset(trts24, "2010$")], 
-                                mat_2010[c(1, 7,8)]))
+                               mat_2010[c(1, 7,8)]))
 mat_2011_24 <- do.call(c, list(all_trts24[str_subset(trts24, "2011$")],
-                                mat_2011[c(1,7,8)]))
+                               mat_2011[c(1,7,8)]))
 names(mat_2010_24) <- c("Bass1_24", "Int2_24", "Orb1_24", "Bass1", "Int2", "Orb1")
 names(mat_2011_24) <- c("Bass1_24", "Int2_24", "Orb1_24", "Bass1", "Int2", "Orb1")
-names(mat_2011_24) <- c("Bass1", "Int2", "Orb1", "Bass1", "Int2", "Orb1")
+# names(mat_2011_24) <- c("Bass1", "Int2", "Orb1", "Bass1", "Int2", "Orb1")
+
+
+# iNEXT -------------------------------------------------------------------
+
+# plots for individual years
+
+m2008 <- lapply(mat_2008, as.incfreq)
+i2008q0 <- iNEXT(m2008, q=0, datatype = "incidence_freq")
+i2008q1 <- iNEXT(m2008, q=1, datatype = "incidence_freq")
+i2008q2 <- iNEXT(m2008, q=2, datatype = "incidence_freq")
+ggiNEXT(i2008q0)
+ggiNEXT(i2008q1)
+
+m2009 <- lapply(mat_2009, as.incfreq)
+i2009q0 <- iNEXT(m2009, q=0, datatype = "incidence_freq")
+i2009q1 <- iNEXT(m2009, q=1, datatype = "incidence_freq")
+i2009q2 <- iNEXT(m2009, q=2, datatype = "incidence_freq")
+ggiNEXT(i2009q0)
+
+m2010 <- lapply(mat_2010, as.incfreq)
+i2010q0 <- iNEXT(m2010, q=0, datatype = "incidence_freq")
+i2010q1 <- iNEXT(m2010, q=1, datatype = "incidence_freq")
+i2010q2 <- iNEXT(m2010, q=2, datatype = "incidence_freq")
+ggiNEXT(i2010q0)
+
+m2011 <- lapply(mat_2011, as.incfreq)
+i2011q0 <- iNEXT(m2011, q=0, datatype = "incidence_freq")
+i2011q1 <- iNEXT(m2011, q=1, datatype = "incidence_freq")
+i2011q2 <- iNEXT(m2011, q=2, datatype = "incidence_freq")
+ggiNEXT(i2011q0)
+
+### testing out other package functions
+ChaoRichness(m2011, datatype = "incidence_freq", conf = 0.95)
+ChaoShannon(m2011, datatype = "incidence_freq", transform = T, conf= 0.95)
+ChaoSimpson(m2011, datatype="incidence_freq", transform = T, conf = 0.95, B = 200)
+DataInfo(m2011, datatype="incidence_freq")
+estimateD(m2011, datatype = "incidence_freq", base = "size", level = NULL, conf = 0.95)
 
 ### iNEXT for 12 vs 24
 
@@ -278,7 +278,6 @@ aov.ibd(Estimator ~ site+block, data = at, specs = site)
 library(ibd)
 data(ibddata)
 aov.ibd(Estimator ~ site+block, data = at, specs = site)
-
 
 # trying to fit curves to estimate a slope parameter ####
 # gather a set of points 
