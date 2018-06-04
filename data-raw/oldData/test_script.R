@@ -60,11 +60,14 @@ mat_2011 <- all_trts[str_subset(trts, "2011$")]
 
 ### iNEXT
 
+# plots for each year ####
+
 m2008 <- lapply(mat_2008, as.incfreq)
 i2008q0 <- iNEXT(m2008, q=0, datatype = "incidence_freq")
 i2008q1 <- iNEXT(m2008, q=1, datatype = "incidence_freq")
 i2008q2 <- iNEXT(m2008, q=2, datatype = "incidence_freq")
 ggiNEXT(i2008q0)
+ggiNEXT(i2008q1)
 
 m2009 <- lapply(mat_2009, as.incfreq)
 i2009q0 <- iNEXT(m2009, q=0, datatype = "incidence_freq")
@@ -90,6 +93,7 @@ ChaoShannon(m2011, datatype = "incidence_freq", transform = T, conf= 0.95)
 ChaoSimpson(m2011, datatype="incidence_freq", transform = T, conf = 0.95, B = 200)
 DataInfo(m2011, datatype="incidence_freq")
 estimateD(m2011, datatype = "incidence_freq", base = "size", level = NULL, conf = 0.95)
+
 
 ### adding data for 24 quadrats vs 12 ####
 
@@ -140,10 +144,13 @@ mat_2011_24 <- do.call(c, list(all_trts24[str_subset(trts24, "2011$")],
                                 mat_2011[c(1,7,8)]))
 names(mat_2010_24) <- c("Bass1_24", "Int2_24", "Orb1_24", "Bass1", "Int2", "Orb1")
 names(mat_2011_24) <- c("Bass1_24", "Int2_24", "Orb1_24", "Bass1", "Int2", "Orb1")
+names(mat_2011_24) <- c("Bass1", "Int2", "Orb1", "Bass1", "Int2", "Orb1")
 
+### iNEXT for 12 vs 24
 
 m2010_24 <- lapply(mat_2010_24, as.incfreq)
 i2010q0 <- iNEXT(m2010_24, q=0, datatype = "incidence_freq")
+i2010q1 <- iNEXT(m2010_24, q=1, datatype = "incidence_freq")
 ggiNEXT(i2010q0)+
   scale_shape_manual(values = c(19,19,19,19,19,19))+ 
   ggtitle("2010 iNEXT curves for species richness q=0")+
@@ -151,11 +158,67 @@ ggiNEXT(i2010q0)+
 
 m2011_24 <- lapply(mat_2011_24, as.incfreq)
 i2011q0 <- iNEXT(m2011_24, q=0, datatype = "incidence_freq")
-i2011q <- iNEXT(m2011_24, q=c(0,1,2), datatype = "incidence_freq")
+i2011q1 <- iNEXT(m2011_24, q=1, datatype = "incidence_freq")
+# i2011q <- iNEXT(m2011_24, q=c(0,1,2), datatype = "incidence_freq")
 ggiNEXT(i2011q0)+
   scale_shape_manual(values = c(19,19,19,19,19,19))+
-  ggtitle("2011 iNEXT curves for species richness q=0")+
+  ggtitle("2011 iNEXT curves q=0")+
   theme(plot.title = element_text(hjust = 0.5))
+ggiNEXT(i2011q1)+
+  scale_shape_manual(values = rep(19, 6))+
+  ggtitle("2011 iNEXT curves q=1")+
+  theme(plot.title = element_text(hjust = 0.5))
+
+# multiple plots per page
+
+bass11 <- iNEXT(m2011_24[c(1,4)], q = 0, datatype = "incidence_freq")
+p1 <- ggiNEXT(bass11) +
+  labs(x = "# quadrats") +
+  scale_fill_discrete(labels = c("Bass1", "Bass1_24", "", "", ""))
+p1
+int11 <- iNEXT(m2011_24[c(2,5)], q = 0, datatype = "incidence_freq")
+p2<- ggiNEXT(int11) +
+  labs(x = "# quadrats", y = "")
+orb11 <- iNEXT(m2011_24[c(3,6)], q = 0, datatype = "incidence_freq")
+p3<- ggiNEXT(orb11) +
+  labs(x = "# quadrats", y="")
+
+fortify(i2011q0)
+
+library(gridExtra)
+grid.arrange(p1, p2, p3, nrow = 1, top= "Species diversity q=0 for 12 vs 24 quadrats")
+
+
+# attempting to facet by something else ####
+
+mat_2011_24[[1]]
+# 
+# map(i2011q0, mutate(i2011q0, site = fct_recode(i2011q0[[1]][[1]],
+#                            Bass = "Bass1",
+#                            Bass = "Bass1_24",
+#                            Int = "Int2",
+#                            Int = "Int2_24",
+#                            Orb = "Orb1",
+#                            Orb = "Orb1_24")))
+i2011q0[[1]][[1]] <- fct_recode(i2011q0[[1]][[1]],
+           Bass = "Bass1",
+           Bass = "Bass1_24",
+           Int = "Int2",
+           Int = "Int2_24",
+           Orb = "Orb1",
+           Orb = "Orb1_24")
+i2011q0[[1]][[1]]
+i2011q0[["AsyEst"]][["Site"]] <- fct_recode(i2011q0[["AsyEst"]][["Site"]],
+                                            Bass = "Bass1",
+                                            Bass = "Bass1_24",
+                                            Int = "Int2",
+                                            Int = "Int2_24",
+                                            Orb = "Orb1",
+                                            Orb = "Orb1_24")
+names(i2011q0[["iNextEst"]]) <- c("Bass", "Int", "Orb", "Bass", "Int", "Orb")
+ggiNEXT(i2011q0, type = 1, facet = "site")
+## how to separate the 12 from the 24?
+
 
 ChaoRichness(m2010_24, datatype = "incidence_freq", conf = 0.95)
 ChaoRichness(m2011_24, datatype = "incidence_freq", conf = 0.95)
@@ -163,7 +226,7 @@ ChaoShannon(m2010_24, datatype = "incidence_freq", transform = T, conf = 0.95)
 ChaoShannon(m2011_24, datatype = "incidence_freq", transform = T, conf = 0.95)
 estimateD(m2010_24, datatype="incidence_freq")
 
-#### attempting to analyze
+#### attempting to analyze ####
 
 a08 <- ChaoRichness(m2008, datatype = "incidence_freq", conf = 0.95)
 a08 <- tibble::rownames_to_column(a08, var = "site")
@@ -216,7 +279,8 @@ library(ibd)
 data(ibddata)
 aov.ibd(Estimator ~ site+block, data = at, specs = site)
 
-# trying to fit curves to estimate a slope parameter
+
+# trying to fit curves to estimate a slope parameter ####
 # gather a set of points 
 
 curveTest <- i2011q0[["iNextEst"]][["Orb1_24"]]
@@ -231,28 +295,38 @@ plot(fit2, which = 1)
 fit2$coefficients
 fit$coefficients
 
-
 summary(fit2)plot(fit, which = 1)
 coef(fit)
 
 
 lm(formula = qD ~ t, data = curveTest) %>%
   summary()
-# attempting to facet by something else
 
-# mat_2011_24[[1]]
-# i2011q %>%
-#   mutate(site = fct_recode(i2011q[[1]][[1]],
-#            "Bass1" = "Bass",
-#            "Bass1_24" = "Bass", 
-#            "Int2" ="Int",
-#            "Int2_24" = "Int",
-#            "Orb1" = "Orb",
-#            "Orb1_24" = "Orb"))
-# class(i2011q)
-#          i2011q[[1]]
-# i2011q[[1]][[1]] 
-# ggiNEXT(i2011q, type=1, facet.var="site") +
-#   facet_wrap(~site)
+##### using vegan package ####
+# specaccum
 
+data(BCI)
+sp1 <- specaccum(BCI)
+sp2 <- specaccum(BCI, "random")
+sp2
+summary(sp2)
+plot(sp1, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue")
+boxplot(sp2, col="yellow", add=TRUE, pch="+")
+## Fit Lomolino model to the exact accumulation
+mod1 <- fitspecaccum(sp1, "lomolino")
+coef(mod1)
+fitted(mod1)
+plot(sp1)
+## Add Lomolino model using argument 'add'
+plot(mod1, add = TRUE, col=2, lwd=2)
+## Fit Arrhenius models to all random accumulations
+mods <- fitspecaccum(sp2, "arrh")
+plot(mods, col="hotpink")
+boxplot(sp2, col = "yellow", border = "blue", lty=1, cex=0.3, add= TRUE)
+## Use nls() methods to the list of models
+sapply(mods$models, AIC)
 
+x <- sqrt(2)^2
+x-2
+class(x)
+typeof(x)
