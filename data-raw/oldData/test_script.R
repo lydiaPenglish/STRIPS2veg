@@ -109,6 +109,10 @@ names(mat_2010_24) <- c("Bass1_24", "Int2_24", "Orb1_24", "Bass1", "Int2", "Orb1
 names(mat_2011_24) <- c("Bass1_24", "Int2_24", "Orb1_24", "Bass1", "Int2", "Orb1")
 # names(mat_2011_24) <- c("Bass1", "Int2", "Orb1", "Bass1", "Int2", "Orb1")
 
+# just 24 quadrats
+m2011_24_sub <- all_trts24[str_subset(trts24, "2011$")] 
+names(m2011_24_sub) <- c("Bass1", "Int2", "Orb1")
+
 
 # iNEXT -------------------------------------------------------------------
 
@@ -140,11 +144,11 @@ i2011q2 <- iNEXT(m2011, q=2, datatype = "incidence_freq")
 ggiNEXT(i2011q0)
 
 ### testing out other package functions
-ChaoRichness(m2011, datatype = "incidence_freq", conf = 0.95)
-ChaoShannon(m2011, datatype = "incidence_freq", transform = T, conf= 0.95)
-ChaoSimpson(m2011, datatype="incidence_freq", transform = T, conf = 0.95, B = 200)
-DataInfo(m2011, datatype="incidence_freq")
-estimateD(m2011, datatype = "incidence_freq", base = "size", level = NULL, conf = 0.95)
+# ChaoRichness(m2011, datatype = "incidence_freq", conf = 0.95)
+# ChaoShannon(m2011, datatype = "incidence_freq", transform = T, conf= 0.95)
+# ChaoSimpson(m2011, datatype="incidence_freq", transform = T, conf = 0.95, B = 200)
+# DataInfo(m2011, datatype="incidence_freq")
+# estimateD(m2011, datatype = "incidence_freq", base = "size", level = NULL, conf = 0.95)
 
 ### iNEXT for 12 vs 24
 
@@ -156,10 +160,12 @@ ggiNEXT(i2010q0)+
   ggtitle("2010 iNEXT curves for species richness q=0")+
   theme(plot.title = element_text(hjust = 0.5))
 
+
 m2011_24 <- lapply(mat_2011_24, as.incfreq)
 i2011q0 <- iNEXT(m2011_24, q=0, datatype = "incidence_freq")
 i2011q1 <- iNEXT(m2011_24, q=1, datatype = "incidence_freq")
-# i2011q <- iNEXT(m2011_24, q=c(0,1,2), datatype = "incidence_freq")
+i2011q <- iNEXT(m2011_24, q=c(0,1,2), datatype = "incidence_freq")
+
 ggiNEXT(i2011q0)+
   scale_shape_manual(values = c(19,19,19,19,19,19))+
   ggtitle("2011 iNEXT curves q=0")+
@@ -168,8 +174,35 @@ ggiNEXT(i2011q1)+
   scale_shape_manual(values = rep(19, 6))+
   ggtitle("2011 iNEXT curves q=1")+
   theme(plot.title = element_text(hjust = 0.5))
+ggiNEXT(i2011q0)+
+  scale_shape_manual(values = rep(19, 6))+
+  ggtitle("2011 iNEXT curves q = 0")+
+  theme(plot.title = element_text(hjust = 0.5))
+ChaoRichness(m2011_24, datatype = "incidence_freq", conf = 0.95)
+ChaoShannon(m2011_24, datatype = "incidence_freq", transform = TRUE, conf= 0.95)
+ChaoSimpson(m2011_24, datatype="incidence_freq", transform = T, conf = 0.95, B = 200) 
 
-# multiple plots per page
+## just 24 quadrats, all 3 d orders
+i2011q24 <- lapply(m2011_24_sub, as.incfreq) %>%
+  iNEXT(q=c(0,1,2), datatype = "incidence_freq")
+
+ggiNEXT(i2011q24, facet.var = "order")+
+  scale_shape_manual(values = c(19,19,19))+
+  theme_bw(base_size = 14)+
+  ggtitle("2011 iNEXT curves, by Order") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+ggiNEXT(i2011q24, facet.var = "site")+
+  scale_shape_manual(values = c(19,19,19))+
+  theme_bw(base_size = 14)+
+  ggtitle("2011 iNEXT curves, by Site") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+iNEXT:::ggiNEXT.iNEXT
+
+
+# multiple plots per page -------------------------------------------------
+
 
 bass11 <- iNEXT(m2011_24[c(1,4)], q = 0, datatype = "incidence_freq")
 p1 <- ggiNEXT(bass11) +
