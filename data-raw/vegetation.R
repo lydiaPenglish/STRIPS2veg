@@ -26,12 +26,27 @@ read_dir = function(path, pattern, into) {
 
 vegetation <- read_dir(path = "vegetation",
                        pattern = "*.csv",
-                       into = c("vegetation","siteID","quadrats", ".csv")) %>%
+                       
+                       # into provides the directory and filename structure
+                       # where every non-alphanumeric character splits the
+                       # directory/filename
+                       into = c("vegetation",
+                                "year","month","day","csv")) %>%
   mutate(
+    # Extract first 3 characters from quadratID to form siteID
+    siteID = substr(quadratID, 1, 3), 
     siteID = factor(toupper(siteID)),
-    cover = as.factor(cover),
-    speciesID = as.factor(speciesID)) %>%
+    
+    # Order cover by amount of cover
+    cover = recode(cover, `2-5` = "1-5"),
+    cover = factor(cover, levels = c("<1", "1-5","5-25","25-50","50-75","75-95",">95")),
+    
+    speciesID = factor(speciesID)) %>%
   
   select(quadratID, siteID, speciesID, cover)
+<<<<<<< HEAD
+=======
+
+>>>>>>> c6a746c6bdf028f32ebabfb545fd62f1cad90acf
 
 devtools::use_data(vegetation, overwrite = TRUE)
