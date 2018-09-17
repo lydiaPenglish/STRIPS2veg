@@ -33,7 +33,5 @@ vegetation <- read_dir(path = "vegetation",
     speciesID = as.factor(speciesID)) %>%
   
   select(quadratID, siteID, speciesID, cover)
-  
-levels(vegetation$cover)[levels(vegetation$cover)=="2-5"] <- "1-5" 
 
 devtools::use_data(vegetation, overwrite = TRUE)
