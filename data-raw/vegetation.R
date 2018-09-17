@@ -1,0 +1,39 @@
+library("dplyr")
+library("tidyr")
+library("readr")
+
+my_read_csv = function(f, into) {
+  readr::read_csv(
+    file = f,
+    col_types = readr::cols(quadratID         = readr::col_character(),
+                            speciesID         = readr::col_character(),
+                            cover             = readr::col_character())) %>%
+    dplyr::mutate(file=f) %>%
+    tidyr::separate(file, into)
+}
+
+read_dir = function(path, pattern, into) {
+  files = list.files(path = path,
+                     pattern = pattern,
+                     recursive = TRUE,
+                     full.names = TRUE)
+  plyr::ldply(files, my_read_csv, into = into)
+}
+
+
+# Above modified from https://gist.github.com/jarad/8f3b79b33489828ab8244e82a4a0c5b3
+#######################################################################
+
+vegetation <- read_dir(path = "vegetation",
+                       pattern = "*.csv",
+                       into = c("vegetation","siteID","quadrats", ".csv")) %>%
+  mutate(
+    siteID = factor(toupper(siteID)),
+    cover = as.factor(cover),
+    speciesID = as.factor(speciesID)) %>%
+  
+  select(quadratID, siteID, speciesID, cover)
+  
+levels(vegetation$cover)[levels(vegetation$cover)=="2-5"] <- "1-5" 
+
+devtools::use_data(vegetation, overwrite = TRUE)
