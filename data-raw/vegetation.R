@@ -44,9 +44,5 @@ vegetation <- read_dir(path = "vegetation",
     speciesID = factor(speciesID)) %>%
   
   select(quadratID, siteID, speciesID, cover)
-<<<<<<< HEAD
-=======
-
->>>>>>> c6a746c6bdf028f32ebabfb545fd62f1cad90acf
 
 devtools::use_data(vegetation, overwrite = TRUE)
