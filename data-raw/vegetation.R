@@ -33,11 +33,10 @@ vegetation <- read_dir(path = "vegetation",
                        # where every non-alphanumeric character splits the
                        # directory/filename
                        into = c("vegetation",
-                                "year","month","day","csv")) %>%
+                                "year","month","day",
+                                "siteID", "csv")) %>%
   mutate(
-    # Extract first 3 characters from quadratID to form siteID
-    siteID = substr(quadratID, 1, 3), 
-    siteID = factor(toupper(siteID)),
+    siteID = toupper(siteID), 
     
     # Order cover by amount of cover
     cover = factor(cover, levels = c("<1", "1-5","5-25","25-50","50-75","75-95",">95")),
