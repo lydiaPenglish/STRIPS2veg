@@ -7,7 +7,9 @@ my_read_csv = function(f, into) {
     file = f,
     col_types = readr::cols(quadratID         = readr::col_character(),
                             speciesID         = readr::col_character(),
-                            cover             = readr::col_character())) %>%
+                            cover             = readr::col_character(),
+                            notes             = readr::col_character(),
+                            flowering         = readr::col_character())) %>%
     dplyr::mutate(file=f) %>%
     tidyr::separate(file, into)
 }
@@ -38,11 +40,10 @@ vegetation <- read_dir(path = "vegetation",
     siteID = factor(toupper(siteID)),
     
     # Order cover by amount of cover
-    cover = recode(cover, `2-5` = "1-5"),
     cover = factor(cover, levels = c("<1", "1-5","5-25","25-50","50-75","75-95",">95")),
     
     speciesID = factor(speciesID)) %>%
   
-  select(quadratID, siteID, speciesID, cover)
+  select(quadratID, siteID, speciesID, cover, notes, flowering)
 
 devtools::use_data(vegetation, overwrite = TRUE)
