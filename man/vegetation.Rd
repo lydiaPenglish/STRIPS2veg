@@ -4,7 +4,7 @@
 \name{vegetation}
 \alias{vegetation}
 \title{Vegetation data for every quadrat}
-\format{A data frame with 4597 rows and 4 columns:
+\format{A data frame with 4597 rows and 6 columns:
 \describe{
   \item{quadratID}{A unique code each quadrat. Reads like "siteID_stripID_quadratNumber"}
   \item{siteID}{A unique code for the site}
