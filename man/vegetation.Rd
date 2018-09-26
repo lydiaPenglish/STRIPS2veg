@@ -10,6 +10,8 @@
   \item{siteID}{A unique code for the site}
   \item{speciesID}{5 letter code unique to each species - consists of first 3 letters of genus, followed by first two letters of species}
   \item{cover}{Visual percent cover of vegetation. Has 7 distinct catagories}
+  \item{notes}{Notes taken during data collection}
+  \item{flowering}{Whether or not a species was flowering - only some sites}
 }}
 \usage{
 vegetation
