@@ -35,4 +35,4 @@ quadrats <- read_dir(path = "quadrat",
   
   select(quadratID, siteID, easting, northing)
 
-devtools::use_data(quadrats, overwrite = TRUE)
+usethis::use_data(quadrats, overwrite = TRUE)
