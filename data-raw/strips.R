@@ -37,4 +37,4 @@ strips <- read_dir(path = "strips",
   
   select(stripID, siteID, number_quadrats, area, perimeter)
 
-devtools::use_data(strips, overwrite = TRUE)
+usethis::use_data(strips, overwrite = TRUE)
