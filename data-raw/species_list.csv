@@ -138,7 +138,7 @@ myosotis verna,spring scorpion grass,boraginaceae,native,annual,weedy forb,myove
 myosoton aquaticum,giant chickweed,caryophyllaceae,introduced,perennial,weedy forb,myoaq,water chickweed
 oenothera biennis,evening primrose,onagraceae,native ,biennial,prairie forb,oenbi,
 oxalis stricta,yellow wood sorrel,oxalidaceae,native ,perennial,weedy forb,oxast,
-panicum capillare,witchgrass,poaceae ,native,annual,prairie C4 grass,panca,
+panicum capillare,witchgrass,poaceae ,native,annual,weedy C4 grass,panca,
 panicum virgatum,switch grass,poaceae ,native,perennial,prairie C4 grass,panvi,
 parthenium integrifolium,wild quinine,asteraceae,native,perennial,prairie forb,parin,
 pastinaca sativa,wild parsnip,apiaceae,introduced,biennial,weedy forb,passa,
@@ -223,5 +223,3 @@ xanthium strumarium,common cocklebur,asteraceae,introduced,annual,weedy forb,xan
 zea mays,cultivated corn, poaceae,introduced, annual,weedy C4 grass,zeama, 
 zizia aptera,heartleaf alexanders,apiaceae,native,perennial,prairie forb,zizap,heart leafed parship
 zizia aurea,golden alexander,apiaceae,native,perennial,prairie forb,zizau,
-
-

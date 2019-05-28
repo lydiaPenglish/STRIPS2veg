@@ -47,4 +47,4 @@ vegetation <- read_dir(path = "vegetation",
     speciesID = replace(speciesID, speciesID == "amata", "amatu")) %>%
   select(quadratID, siteID, speciesID, cover, notes, flowering)
 
-devtools::use_data(vegetation, overwrite = TRUE)
+usethis::use_data(vegetation, overwrite = TRUE)
