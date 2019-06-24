@@ -2,6 +2,7 @@ library("STRIPS2PRIVATE")
 library("dplyr")
 library("tidyr")
 library("readr")
+library("stringr")
 
 my_read_csv = function(f, into) {
   readr::read_csv(
@@ -26,13 +27,14 @@ read_dir = function(path, pattern, into) {
 
 quadrats <- read_dir(path = "quadrat",
                   pattern = "*.csv",
-                  into = c("quadrat","siteID","quadrats","csv")) %>%
+                  into = c("quadrat","year", "siteID","quadrats","csv")) %>%
   
   mutate(
-    siteID = factor(toupper(siteID)),
-    easting = anonymizeGPS(easting, siteID, "easting"),
-    northing = anonymizeGPS(northing, siteID, "northing")) %>%
+    siteID    = factor(toupper(siteID)),
+    quadratID = str_to_upper(quadratID),
+    easting   = anonymizeGPS(easting, siteID, "easting"),
+    northing  = anonymizeGPS(northing, siteID, "northing")) %>%
   
-  select(quadratID, siteID, easting, northing)
+  select(year, quadratID, siteID, easting, northing)
 
 usethis::use_data(quadrats, overwrite = TRUE)

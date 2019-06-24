@@ -26,15 +26,15 @@ read_dir = function(path, pattern, into) {
 
 strips <- read_dir(path = "strips",
                    pattern = "*.csv",
-                   into = c("site","siteID","csv")) %>%
+                   into = c("site","year","siteID","csv")) %>%
   
   # Make unique stripID
   mutate(stripID = formatC(stripID, width = 2, format = "d", flag = "0"), # add preceeding zeros for proper ordering
-         stripID = paste(siteID, stripID, sep=""),
+         stripID = paste(siteID, stripID, sep="_"),
          stripID = toupper(stripID),
          
          siteID = toupper(siteID)) %>%
   
-  select(stripID, siteID, number_quadrats, area, perimeter)
+  select(year, stripID, siteID, area, perimeter)
 
 usethis::use_data(strips, overwrite = TRUE)

@@ -45,6 +45,6 @@ vegetation <- read_dir(path = "vegetation",
     # fixing common species recorded with the wrong code
     speciesID = replace(speciesID, speciesID == "setlu", "setpu"),
     speciesID = replace(speciesID, speciesID == "amata", "amatu")) %>%
-  select(quadratID, siteID, speciesID, cover, notes, flowering)
+  select(year, quadratID, siteID, speciesID, cover, notes, flowering)
 
 usethis::use_data(vegetation, overwrite = TRUE)
