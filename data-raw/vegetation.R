@@ -1,6 +1,7 @@
 library("dplyr")
 library("tidyr")
 library("readr")
+setwd("~/STRIPS2veg/data-raw")
 
 my_read_csv = function(f, into) {
   readr::read_csv(
@@ -44,7 +45,8 @@ vegetation <- read_dir(path = "vegetation",
     speciesID = factor(speciesID),
     # fixing common species recorded with the wrong code
     speciesID = replace(speciesID, speciesID == "setlu", "setpu"),
-    speciesID = replace(speciesID, speciesID == "amata", "amatu")) %>%
+    speciesID = replace(speciesID, speciesID == "amata", "amatu"),
+    speciesID = replace(speciesID, speciesID == "viola", "vioso")) %>%
   select(year, quadratID, siteID, speciesID, cover, notes, flowering)
 
 usethis::use_data(vegetation, overwrite = TRUE)
