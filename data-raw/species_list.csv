@@ -14,7 +14,7 @@ alliaria petiolata,garlic mustard,brassicaceae,introduced,biennial,weedy forb,al
 allium canadense,wild garlic,amaryllidaceae,native,perennial,prairie forb,allca,canada garlic
 allium cernuum,nodding wild onion,amaryllidaceae,native ,perennial,prairie forb,allce,
 allium stellatum,prairie onion,amaryllidaceae,native,perennial,prairie forb,allst,
-amaranthus palmeri,palmer amaranth,amaranthaceae,introduced,annual,weedy forb,amapa,
+amaranthus retroflexus,rough pigweed,amaranthaceae,introduced,annual,weedy forb,amare,
 amaranthus tuberculatus,waterhemp,amaranthaceae,introduced,annual,weedy forb,amatu,
 ambrosia artemisiifolia,common ragweed,asteraceae,native,annual,weedy forb,ambar,
 ambrosia psilostachya,western ragweed,asteraceae,native,perennial,prairie forb,ambps,
@@ -32,6 +32,7 @@ asclepias incarnata,swamp milkweed,asclepiadaceae,native,perennial,prairie forb,
 asclepias tuberosa,butterfly milkweed,asclepiadaceae,native,perennial,prairie forb,asctu,
 asclepias verticillata,whorled milkweed,asclepiadaceae,native,perennial,prairie forb,ascve,
 astragalus canadensis,canadian milk vetch,fabaceae,native,perennial,prairie forb,astca,
+avena sativa,oat, poaceae,introduced,annual,weedy C3 grass,avesa,
 baptisia alba,wild white indigo,fabaceae,native,perennial,prairie forb,bapal,false white indigo
 baptisia australis,blue indigo,fabaceae,native,perennial,prairie forb,bapau,blue false indigo
 barbarea vulgaris,wild rocket,brassicaceae,introduced,biennial,weedy forb,barvu,wintercress
@@ -45,6 +46,7 @@ bromus tectorum,downy brome,poaceae ,introduced,annual,weedy C3 grass,brote,chea
 calystegia sepium,hedge bindweed,convolvulaceae,native,perennial,weedy forb,calse,
 capsella bursa-pastoris,shepherd's-purse,brassicaceae,introduced,annual,weedy forb,capbu,
 carduus nutans,musk thistle,asteraceae,introduced,biennial,weedy forb,carnu,nodding thistle
+carex tribuloides,troublesome sedge,cyperaceae,native,perennial,prairie sedge,cartr,blunt broom sedge
 carex vulpinoidea,brown  fox sedge,cyperaceae,native,perennial,prairie sedge,carvu,
 castilleja coccinea,indian paintbrush,scrophulariaceae,native ,perennial,prairie forb,casco,
 cerastium vulgare,mouse-ear chickweed,caryophyllaceae,introduced,perennial,weedy forb,cervu,
@@ -89,11 +91,12 @@ euphorbia maculata,spotted spurge,euphorbiaceae,native,annual,weedy forb,eupma,c
 euphorbia nutans,nodding spurge,euphorbiaceae,native,annual,weedy forb,eupnu,
 festuca arundinacea,tall fescue,poaceae,introduced,perennial,weedy C3 grass,fesar,
 fraxinus americana,white ash,oleaceae,native,perennial,woody,fraam,
-fraxinus pennsylvanica,green ash,oleaceae,native,perennial,woody,frapa,
+fraxinus pennsylvanica,green ash,oleaceae,native,perennial,woody,frape,
 gaillardia aristata,blanket flower,asteraceae,native,perennial,prairie forb,gaiar,
 gaillardia pulchella,indian blanket,asteraceae,native,annual,prairie forb,gaipu,
 galium aparine,catchweed bedstraw,rubiaceae,native,annual,weedy forb,galap,
 galium boreale,northern bedstraw,rubiaceae,native,perennial,prairie forb,galbo,
+galium triflorum,sweet-scented bedstraw,rubiaceae,native,perennial,woodland forb,galtr,
 gaura biennis,biennial guara,onagraceae,native,biennial,prairie forb,gaubi,biennial beeblossom
 gentiana alba,white gentian,gentianaceae,native ,perennial,prairie forb,genal,
 gentiana andrewsii,bottle gentian,gentianaceae,native ,perennial,prairie forb,genan,
@@ -104,6 +107,7 @@ gleditsia triacanthos,honey locust,fabaceae,native,perennial,woody,gletr,
 glycine max,soybean,fabaceae,introduced,annual,weedy forb,glyma,
 hackelia virginiana,stickseed,boraginaceae,native,biennial,weedy forb,hacvi,
 helenium autumnale,sneezeweed,asteraceae,native ,perennial ,prairie forb,helau,
+helianthus annuus,common sunflower,asteraceae,native ,annual ,weedy forb, helan, 
 helianthus giganteus,tall sunflower,asteraceae,native ,perennial ,prairie forb,helgi,giant sunflower
 helianthus grosseserratus,saw-tooth sunflower,asteraceae,native ,perennial ,prairie forb,helgr,
 helianthus maximiliani,maximillain sunflower,asteraceae,native ,perennial ,prairie forb,helma,
@@ -113,8 +117,10 @@ heliopsis helianthoides,oxeye sunflower,asteraceae,native,perennial,prairie forb
 heuchera richardsonii,alumroot,saxifragaceae,native,perennial,prairie forb,heuri,
 hibiscus trionum,venice mallow,malvaceae,introduced,annual,weedy forb,hibtr,
 hordeum jubatum,squirrel-tail barley,poaceae ,native,perennial,weedy C3 grass,horju,
+hypericum perforatum,common st. john's wort,hypericaceae,introduced,perennial,prairie forb,hyppe,
 ipomoea hederacea,ivyleaf morningglory,convolvulaceae,introduced,annual,weedy forb,ipohe,
 ipomea purpurea,common morning glory,convolvulaceae,introduced,annual,weedy forb,ipopu,
+juncus tenuis,slender rush,juncaceae,native,perennial,rush,junte,path rush
 juncus torreyi,torrey's rush,juncaceae,native,perennial,rush,junto,
 juniperus virginiana,eastern red cedar,cupressaceae,native,perennial,woody,junvi,
 koeleria macrantha,june grass,poaceae ,native,perennial,prairie C3 grass,koema,
@@ -151,6 +157,7 @@ nepeta cataria,catnip,lamiaceae,introduced,perennial,weedy forb,nepca,
 oenothera biennis,evening primrose,onagraceae,native ,biennial,prairie forb,oenbi,
 oxalis stricta,yellow wood sorrel,oxalidaceae,native ,perennial,weedy forb,oxast,
 panicum capillare,witchgrass,poaceae ,native,annual,weedy C4 grass,panca,
+panicum dichotomiflorum,fall panicum,poaceae ,native, annual,weedy C4 grass,pandi, 
 panicum virgatum,switch grass,poaceae ,native,perennial,prairie C4 grass,panvi,
 parthenium integrifolium,wild quinine,asteraceae,native,perennial,prairie forb,parin,
 pastinaca sativa,wild parsnhip,apiaceae,introduced,biennial,weedy forb,passa,
@@ -175,6 +182,7 @@ populus deltoides,common cottonwood,salicaeae,native,perennial,woody,popde,
 portulaca oleracea,commone purslane,portulacaceae,introduced,annual,weedy forb,porol,
 potentilla arguta,tall cinquefoil,rosaceae,native,perennial,prairie forb,potar,prairie cinquefoil
 potentilla norvegica,rough cinquefoil,rosaceae,native,biennial,weedy forb,potno,
+potentilla recta,sulfur cinquefoil,rosaceae,introduced,perennial,weedy forb,potre,
 potentilla simplex,old field cinquefoil,rosaceae,native,perennial,weedy forb,potsi,
 prunus serotina,wild black cherry,rosaceae,native,perennial,woody,pruse,
 pycnanthemum tenuifolium ,slender mountain mint,lamiaceae,native,perennial,prairie forb,pycte,
@@ -183,6 +191,7 @@ raphanus raphanistrum,wild radish,brassicaceae,introduced,annual,weedy forb,rapr
 ratibida columnifera,prairie coneflower,asteraceae,native,perennial,prairie forb,ratco,long headed coneflower
 ratibida pinnata,greyheaded coneflower,asteraceae,native,perennial,prairie forb,ratpi,yellow coneflower
 rhus glabra,smooth sumac,anacardiaceae,native,perennial,woody,rhugl,
+rosa arkansana,prairie rose,rosaceae,native,perennial,prairie forb,rosar,sunshine rose 
 rosa multiflora,muliflora rose,rosaceae,introduced,perennial,weedy forb,rosmu,
 rubus occidentalis,black raspberry,rosaceae,native,perennial,woody,ruboc,
 rudbeckia hirta,black eyed susan,asteraceae,native,perennial,prairie forb,rudhi,
@@ -218,6 +227,7 @@ symphyotrichum oolentangiense,sky blue aster,asteraceae,native,perennial,prairie
 symphyotrichum pilosum,frost aster,asteraceae,native,perennial,prairie forb,sympi,hairy white oldfield aster
 symphyotrichum sericeum,silky aster,asteraceae,native,perennial,prairie forb,symse,
 taraxacum officinale,common dandelion,asteraceae,introduced,perennial,weedy forb,tarof,
+teucrium canadense,american germander,lamiaceae,native,perennial ,prairie forb,teuca,
 thalictrum dasycarpum,meadow rue,ranunculaceae,native,perennial,prairie forb,thada,
 thlaspi arvense,field pennycress,brassicaceae,introduced,annual,weedy forb,thlar,
 toxicodendron radicans,poison ivy,anacardiaceae,native,perennial,woody,toxra,
@@ -232,6 +242,7 @@ urtica dioica,stinging nettle,urticaeae,native,perennial,weedy forb,urtdi,
 verbena hastata,blue vervain,verbenaceae,native,perennial,prairie forb,verha,
 verbena stricta,hoary vervain,verbenaceae,native,perennial,prairie forb,verst,wooly vervain
 verbena uricifolia,white vervain,verbenaceae,native,perennial,prairie forb,verur,
+veronia baldwinii,western ironweed,asteracea,native,perennial,prairie forb,verba,baldwin's ironweed
 veronia fasciculata,ironweed,asteraceae,native,perennial,prairie forb,verfa,
 veronicastrum virginicum,culver's root,scrophulariaceae,native,perennial,prairie forb,vervi,
 vicia villosa,hairy vetch,fabaceae,introduced,biennial,weedy forb,vicvi,
