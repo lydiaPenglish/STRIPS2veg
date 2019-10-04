@@ -1,6 +1,7 @@
 library("dplyr")
 library("tidyr")
 library("readr")
+library("stringr")
 setwd("~/STRIPS2veg/data-raw")
 
 all_site_info <- read_csv("all_site_info.csv") %>%  
@@ -11,5 +12,9 @@ all_site_info <- read_csv("all_site_info.csv") %>%
 
 usethis::use_data(all_site_info, overwrite = TRUE)
 
-species_list <- read_csv("species_list.csv")
+species_list <- read_csv("species_list.csv")%>%
+  # capilatizing first letters 
+    mutate(full_name   = str_to_sentence(full_name))%>%
+    mutate(common_name = str_to_sentence(common_name))
+
 usethis::use_data(species_list, overwrite = TRUE)
