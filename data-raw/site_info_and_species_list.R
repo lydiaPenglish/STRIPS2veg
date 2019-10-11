@@ -2,12 +2,16 @@ library("dplyr")
 library("tidyr")
 library("readr")
 library("stringr")
+library("lubridate")
 setwd("~/STRIPS2veg/data-raw")
 
 all_site_info <- read_csv("all_site_info.csv") %>%  
     mutate(siteID = factor(toupper(siteID))) %>%
-    select(siteID, season_seeded, year_seeded, area_in_strips, seeding_method,
-         species_seeded, management, nurse_crop)%>%
+    # parsing date seeded
+    mutate(date_seeded = lubridate::mdy(date_seeded)) %>%
+    # -- no longer just selecting a few columns -- # 
+    # select(siteID, season_seeded, year_seeded, area_in_strips, seeding_method,
+    #     species_seeded, management, nurse_crop)%>%
   arrange(siteID)
 
 usethis::use_data(all_site_info, overwrite = TRUE)
