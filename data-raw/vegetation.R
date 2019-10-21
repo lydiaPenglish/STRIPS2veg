@@ -42,7 +42,7 @@ vegetation <- read_dir(path = "vegetation",
     # Order cover by amount of cover
     cover = factor(cover, levels = c("<1", "1-5","5-25","25-50","50-75","75-95",">95")),
     
-    speciesID = factor(speciesID),
+    # speciesID = factor(speciesID), # not sure I want speciesID to be a factor?
     # fixing common species recorded with the wrong code
     speciesID = replace(speciesID, speciesID == "setlu", "setpu"),
     speciesID = replace(speciesID, speciesID == "amata", "amatu"),
