@@ -47,7 +47,8 @@ vegetation <- read_dir(path = "vegetation",
     speciesID = replace(speciesID, speciesID == "setlu", "setpu"),
     speciesID = replace(speciesID, speciesID == "amata", "amatu"),
     speciesID = replace(speciesID, speciesID == "viola", "vioso"),
-    speciesID = replace(speciesID, speciesID == "gaipu", "gaiar")) %>%
+    speciesID = replace(speciesID, speciesID == "gaipu", "gaiar"),
+    speciesID = replace(speciesID, speciesID == "spoas", "spoco")) %>%
   select(year, quadratID, siteID, speciesID, cover, notes, flowering)
 
 usethis::use_data(vegetation, overwrite = TRUE)
