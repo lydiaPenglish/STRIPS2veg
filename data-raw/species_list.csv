@@ -1,4 +1,4 @@
-full_name,common_name,family,native,life_cycle,group,code,alternate_name,seeds_per_oz
+full_name,common_name,family,native,life_cycle,group,speciesID,alternate_name,seeds_per_oz
 abutilon theophrasti,velvetleaf,malvaceae,introduced,annual,weedy forb,abuth,buttonweed,
 acalypha rhomboidea,rhomboid mercury,euphorbiaceae,native,annual,weedy forb,acarh,three-seeded mercury,
 acer rubrum,red maple,aceraceae,native,perennial,woody,aceru,,
@@ -68,7 +68,7 @@ commelina communis,asiatic dayflower,commelinaceae,introduced,annual,weedy forb,
 convolvulus arvensis,field bindweed,convolvulaceae,introduced,perennial,weedy forb,conar,,
 conyza canadensis,marestail,asteraceae,native,annual,weedy forb,conca,horseweed,
 coreopsis palmata,prairie coreopsis,asteraceae,native,perennial,prairie forb,corpa,,10000
-coreopsis tinctoria,plains coreopsis,asteraceae,native,perennial,prairie forb,corti,golden tickseed,
+coreopsis tinctoria,plains coreopsis,asteraceae,native,perennial,prairie forb,corti,golden tickseed,87500
 cyperus esculentus,yellow nutsedge,cyperaceae,native,perennial,weedy sedge,cypes,,
 dactylis glomerata,orchard grass,poaceae ,introduced,perennial,weedy C3 grass,dacgl,,
 dalea candida,white prairie clover,fabaceae,native,perennial,prairie forb,dalca,,19000
