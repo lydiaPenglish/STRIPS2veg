@@ -3,7 +3,6 @@ library("dplyr")
 library("tidyr")
 library("readr")
 library("stringr")
-setwd("~/STRIPS2veg/data-raw")
 
 my_read_csv = function(f, into) {
   readr::read_csv(

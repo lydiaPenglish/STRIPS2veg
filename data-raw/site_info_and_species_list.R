@@ -3,7 +3,6 @@ library("tidyr")
 library("readr")
 library("stringr")
 library("lubridate")
-setwd("~/STRIPS2veg/data-raw")
 
 all_site_info <- read_csv("all_site_info.csv") %>%  
     mutate(siteID = factor(toupper(siteID))) %>%
