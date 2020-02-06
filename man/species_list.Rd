@@ -4,7 +4,7 @@
 \name{species_list}
 \alias{species_list}
 \title{Useful information about plants identified}
-\format{A data frame with 268 rows and 9 columns:
+\format{A data frame with 268 rows and 10 columns:
 \describe{
   \item{full_name}{Scientific name - the genus and species}
   \item{common_name}{Common name of a species}
@@ -15,6 +15,8 @@
   \item{code}{5 letter code unique to each species. First three letters of genus and first two letters of species}
   \item{alternate name}{Secondary common name}
   \item{seeds_per_oz}{Number of seeds per ounce, gathered from \href{https://www.prairiemoon.com/}{Prairie Moon Nursery}}
+  \item{group_simple}{Simplified version of life history group. Consolidates C3, C4 grasses and sedges into just grasses 
+  and creates "other" group for rushes, ferns, and wetland forbs}
 }}
 \usage{
 species_list
