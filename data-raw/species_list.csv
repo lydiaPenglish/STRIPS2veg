@@ -104,13 +104,13 @@ fraxinus pennsylvanica,green ash,oleaceae,native,perennial,woody,frape,,
 gaillardia aristata,blanket flower,asteraceae,native,perennial,prairie forb,gaiar,,11625
 galium aparine,catchweed bedstraw,rubiaceae,native,annual,weedy forb,galap,,
 galium boreale,northern bedstraw,rubiaceae,native,perennial,prairie forb,galbo,,70000
-galium triflorum,sweet-scented bedstraw,rubiaceae,native,perennial,woodland forb,galtr,,
+galium triflorum,sweet-scented bedstraw,rubiaceae,native,perennial,weedy forb,galtr,,
 gaura biennis,biennial guara,onagraceae,native,biennial,prairie forb,gaubi,biennial beeblossom,2700
 gentiana alba,white gentian,gentianaceae,native ,perennial,prairie forb,genal,,140000
 gentiana andrewsii,bottle gentian,gentianaceae,native ,perennial,prairie forb,genan,,280000
 gentiana puberulenta,downy gentian,gentianaceae,native,perennial,prairie forb,genpu,,435000
 gentianella quinquefolia,stiff gentian,gentianaceae,native ,perennial,prairie forb,genqu,,180000
-geum canadense,white avens,rosaceae,native,perennial,woodland forb,geuca,,
+geum canadense,white avens,rosaceae,native,perennial,weedy forb,geuca,,
 geum triflorum,prairie smoke,rosaceae,native,perennial ,prairie forb,geutr,,27000
 gleditsia triacanthos,honey locust,fabaceae,native,perennial,woody,gletr,,
 glycine max,soybean,fabaceae,introduced,annual,weedy forb,glyma,,
@@ -142,7 +142,7 @@ liatris aspera,rough blazing star,asteraceae,native,perennial,prairie forb,liaas
 liatris pycnostachya,prairie blazing star,asteraceae,native,perennial,prairie forb,liapy,,11000
 liatris spicata,spiked gayfeather,asteraceae,native,perennial,prairie forb,liasp,,11000
 linum lewisii,blue flax,linaceae,native,perennial,prairie forb,linle,prairie flax Lewis flax,18000
-lobelia inflata,indian tobacco,campanulaceae,native,annual,woodland forb,lobin,,
+lobelia inflata,indian tobacco,campanulaceae,native,annual,weedy forb,lobin,,
 lobelia spicata,pale-spiked lobelia,lobeliaceae,native,perennial,prairie forb,lobsp,,900000
 lonicera maackii,amur honeysuckle,caprifoliaceae,introduced,perennial,woody,lonma,,
 lotus corniculatus,bird's foot trefoil,fabaceae,introduced,perennial,weedy forb,lotco,,
@@ -210,7 +210,7 @@ rudbeckia subtomentosa,sweet coneflower,asteraceae,native,perennial,prairie forb
 rudbeckia triloba,brown eyed susan,asteraceae,native,perennial,prairie forb,rudtr,,34000
 ruellia humulis,wild petunia,acanthaceae,native,perennial,prairie forb,ruehu,,5200
 rumex crispus,curly dock,polygonaceae,introduced,perennial,weedy forb,rumcr,,
-sanicula canadensis,canadian black snakeroot,apiaceae,native,biennial,woodland forb,sanca,,
+sanicula canadensis,canadian black snakeroot,apiaceae,native,biennial,weedy forb,sanca,,
 schizachyrium scoparium,little bluestem,poaceae ,native,perennial,prairie C4 grass,schsc,,15000
 senna marilandica,maryland senna,fabaceae,native ,perennial,prairie forb,senma,,1700
 setaria faberi,giant foxtail,poaceae ,introduced,annual,weedy C4 grass,setfa,,
