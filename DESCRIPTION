@@ -1,13 +1,21 @@
 Package: STRIPS2veg
 Title: Data for STRIPS vegetation study
 Version: 0.1
-Authors@R: c(
-    person("Lydia", "English", email = "lenglish@iastate.edu", role = c("aut","cre")),
-    person("Jarad", "Niemi", email = "niemi@iastate.edu", role = c("aut"))
-    )
-Description: What the package does (one paragraph).
-Depends: R (>= 3.0)
+Authors@R: 
+    c(person(given = "Lydia",
+             family = "English",
+             role = c("aut", "cre"),
+             email = "lenglish@iastate.edu"),
+      person(given = "Jarad",
+             family = "Niemi",
+             role = "aut",
+             email = "niemi@iastate.edu"))
+Description: Provides data and example analysis scripts from
+    vegetation surveys conducted on Iowa farms in the summer of 2018 and
+    2019.
 License: What license is it under?
+Depends: 
+    R (>= 3.0)
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2

@@ -3,7 +3,6 @@
 \docType{package}
 \name{STRIPSveg}
 \alias{STRIPSveg}
-\alias{STRIPSveg-package}
 \title{STRIPSveg: A package for STRIPS vegetation data}
 \description{
 The STRIPSveg package provides STRIPS vegetation data.
