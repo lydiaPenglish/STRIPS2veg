@@ -6,12 +6,13 @@ library("lubridate")
 
 
 all_site_info <- read_csv("all_site_info.csv") %>%  
-    mutate(siteID = factor(toupper(siteID)),
-           # parsing date seeded
-           date_seeded = lubridate::mdy(date_seeded)) %>%
-    # -- no longer just selecting a few columns -- # 
-    # select(siteID, season_seeded, year_seeded, area_in_strips, seeding_method,
-    #     species_seeded, management, nurse_crop)%>%
+  mutate(siteID = factor(toupper(siteID)),
+         # parsing date seeded
+         date_seeded = lubridate::mdy(date_seeded),
+         # adding age based on age at January 1st 2020
+         age_days = interval(date_seeded, lubridate::dmy("01-01-2020")),
+         age_yrs  = round(time_length(age_days, unit = "year"), 1)) %>%
+  select(-age_days)%>%
   arrange(siteID)
 
 usethis::use_data(all_site_info, overwrite = TRUE)
