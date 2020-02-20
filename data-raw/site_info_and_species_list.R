@@ -11,7 +11,9 @@ all_site_info <- read_csv("all_site_info.csv") %>%
          date_seeded = lubridate::mdy(date_seeded),
          # adding age based on age at January 1st 2020
          age_days = interval(date_seeded, lubridate::dmy("01-01-2020")),
-         age_yrs  = round(time_length(age_days, unit = "year"), 1)) %>%
+         age_yrs  = round(time_length(age_days, unit = "year"), 1),
+         # convert area to acres
+         acres_in_strips = area_in_strips*0.000247105) %>%
   select(-age_days)%>%
   arrange(siteID)
 
