@@ -7,13 +7,17 @@ library("lubridate")
 
 all_site_info <- read_csv("all_site_info.csv") %>%  
   mutate(siteID = factor(toupper(siteID)),
-         # parsing date seeded
+    # parsing date seeded
          date_seeded = lubridate::mdy(date_seeded),
-         # adding age based on age at January 1st 2020
+    # adding age based on age at January 1st 2020
          age_days = interval(date_seeded, lubridate::dmy("01-01-2020")),
          age_yrs  = round(time_length(age_days, unit = "year"), 1),
-         # convert area to acres
-         acres_in_strips = area_in_strips*0.000247105) %>%
+    # convert area to acres
+         acres_in_strips = area_in_strips*0.000247105,
+    # lumping winter seeded sites (n = 2) with the fall     
+         season_seeded  = dplyr::recode(season_seeded, 
+                                        "winter" = "fall-winter",
+                                        "fall"   = "fall-winter")) %>%
   select(-age_days)%>%
   arrange(siteID)
 
@@ -24,7 +28,8 @@ species_list <- read_csv("species_list.csv")%>%
     mutate(full_name    = str_to_sentence(full_name),
            common_name  = str_to_sentence(common_name),
   # making a new variable with even simpler group names         
-           group_simple = dplyr::recode(group, "prairie C3 grass" = "prairie grass",
+           group_simple = dplyr::recode(group, 
+                                        "prairie C3 grass" = "prairie grass",
                                         "prairie C4 grass" = "prairie grass",
                                         "prairie sedge"    = "prairie grass",
                                         "weedy C3 grass"   = "weedy grass",
