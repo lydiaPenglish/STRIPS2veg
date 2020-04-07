@@ -55,6 +55,7 @@ You can install the development version of STRIPS2veg from [GitHub](https://gith
 remotes::install_github("lydiaPenglish/STRIPSveg")
 ```
 ## Example
+#### Making a summary plot
 
 Here is an example of how to calculate the relative cover (p<sub>i</sub>) of each species at every site in 2019. 
 
@@ -123,7 +124,7 @@ site_pi %>%
   ggplot(aes(siteID, grp_pi))+
   geom_col(aes(fill = factor(group_simple, 
                              levels = c("other", "woody", "weedy forb", 
-                                        "weedy   grass", "prairie forb",
+                                        "weedy grass", "prairie forb",
                                         "prairie grass"))))+
   scale_fill_manual(values = mycols)+
   labs(fill = "Vegetation type",
