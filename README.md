@@ -33,7 +33,7 @@ see to updates, check out the
 
 #### Summary of Package Contents
 
-This package currently 5 dataframes:
+This package currently contains 5 datasets:
 
 1.  `all_site_info` contains general information about each site visited
     throughout the study period.
@@ -82,9 +82,8 @@ Here is an example of how to calculate the relative cover
 
 ``` r
 library(STRIPS2veg)
-library(tidyverse)
-#> Warning: package 'ggplot2' was built under R version 3.6.3
-#> Warning: package 'dplyr' was built under R version 3.6.3
+library(dplyr)
+library(ggplot2)
 data("vegetation")
 
 pi_2019 <- vegetation %>%
@@ -195,4 +194,6 @@ site_pi %>%
 
 Looks like some sites have nice cover of the target vegetation (prairie
 grasses and forbs - green bars) while other sites are dominated by
-non-target vegetation (weedy grasses and forbs - yellow and orange bars)
+non-target vegetation (weedy grasses and forbs - yellow and orange
+bars). Lydia’s Masters thesis attempted to understand what factors were
+driving this variation.

@@ -30,7 +30,7 @@ Prairie strips are a farming conservation practice whereby native, prairie habit
 
 #### Summary of Package Contents
 
-This package currently 5 dataframes:
+This package currently contains 5 datasets:
 
 i. `all_site_info` contains general information about each site visited throughout the study period. 
 ii. `strips` contains the ID, area, and perimeter of all strips in a site
@@ -59,9 +59,10 @@ remotes::install_github("lydiaPenglish/STRIPSveg")
 
 Here is an example of how to calculate the relative cover (p<sub>i</sub>) of each species at every site in 2019. 
 
-```{r example, message = FALSE}
+```{r example, message = FALSE, warning = FALSE}
 library(STRIPS2veg)
-library(tidyverse)
+library(dplyr)
+library(ggplot2)
 data("vegetation")
 
 pi_2019 <- vegetation %>%
@@ -135,4 +136,4 @@ site_pi %>%
 
 ```
 
-Looks like some sites have nice cover of the target vegetation (prairie grasses and forbs - green bars) while other sites are dominated by non-target vegetation (weedy grasses and forbs - yellow and orange bars)
+Looks like some sites have nice cover of the target vegetation (prairie grasses and forbs - green bars) while other sites are dominated by non-target vegetation (weedy grasses and forbs - yellow and orange bars). Lydia's Masters thesis attempted to understand what factors were driving this variation. 

@@ -4,7 +4,8 @@
 \name{strips}
 \alias{strips}
 \title{Useful information about strips}
-\format{A data frame with 141 rows and 5 variables:
+\format{
+A data frame with 141 rows and 5 variables:
 \describe{
   \item{year}{The year that the stripID was generated.}
   \item{stripID}{A numerical identifie for the strip. Each identifier begins at 1 for a given site and can be read as 
@@ -12,7 +13,8 @@
   \item{siteID}{A unique 3 letter code for the site}
   \item{area}{Area of the strip (m^2^)}
   \item{perimeter}{Perimeter of the strip (m)}
-}}
+}
+}
 \usage{
 strips
 }

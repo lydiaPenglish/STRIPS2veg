@@ -4,7 +4,8 @@
 \name{quadrats}
 \alias{quadrats}
 \title{Useful information about quadrats}
-\format{A data frame with 669 rows and 5 variables:
+\format{
+A data frame with 669 rows and 5 variables:
 \describe{
   \item{year}{The year the quadratID was generated. This column was added because 5 sites were visited during 
   just the second field season (2019) and some sites had to have some new quadrats generated between field seasons.}
@@ -14,7 +15,8 @@
   \item{siteID}{A unique 3 letter code for the site}
   \item{easting}{Anonymized easting coordinate for quadrat location}
   \item{northing}{Anonymized northing coordate for quadrat location}
-}}
+}
+}
 \usage{
 quadrats
 }

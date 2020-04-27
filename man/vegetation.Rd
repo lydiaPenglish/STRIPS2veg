@@ -4,7 +4,8 @@
 \name{vegetation}
 \alias{vegetation}
 \title{Vegetation data for every quadrat}
-\format{A data frame with 10416 rows and 7 columns:
+\format{
+A data frame with 10416 rows and 7 columns:
 \describe{
   \item{year}{The year the data was collected}
   \item{quadratID}{A unique code each quadrat. Reads like "siteID_stripID_quadratNumber"}
@@ -15,7 +16,8 @@
   \item{notes}{Any notes taken during data collection}
   \item{flowering}{Whether or not a species was flowering - This was data we thought we'd collect throughout sampling
   for another project, but we really didn't end up consistently recording it. Therefore it can largely be ignored.}
-}}
+}
+}
 \usage{
 vegetation
 }

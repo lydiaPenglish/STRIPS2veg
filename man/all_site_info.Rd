@@ -4,7 +4,8 @@
 \name{all_site_info}
 \alias{all_site_info}
 \title{Useful information for every site}
-\format{A data frame with 26 rows and 12 columns:
+\format{
+A data frame with 26 rows and 12 columns:
 \describe{
   \item{siteID}{A unique 3 letter code for the site}
   \item{season_seeded}{The time of year the strip was planted}
@@ -18,7 +19,8 @@
   \item{burn_year}{The year that a site was burned}
   \item{burn_notes}{Any other relevant information about how a site is burned}
   \item{nurse_crop}{The type of crop seeded with the prairie mix, usually oats}
-}}
+}
+}
 \usage{
 all_site_info
 }

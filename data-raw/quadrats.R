@@ -32,8 +32,10 @@ quadrats <- read_dir(path = "quadrat",
   mutate(
     siteID    = factor(toupper(siteID)),
     quadratID = str_to_upper(quadratID),
-    easting   = anonymizeGPS(easting, siteID, "easting"),
-    northing  = anonymizeGPS(northing, siteID, "northing")) %>%
+  # - Don't need these lines anymore since quadrats are already anonymized  
+    # easting   = anonymizeGPS(easting, siteID, "easting"),
+    # northing  = anonymizeGPS(northing, siteID, "northing")
+  ) %>%
   
   select(year, quadratID, siteID, easting, northing)
 
