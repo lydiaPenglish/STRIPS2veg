@@ -9,7 +9,7 @@
 #'   \item{season_seeded}{The time of year the strip was planted}
 #'   \item{date_seeded}{The exact planting day of a site}
 #'   \item{year_seeded}{The year the strip was planted}
-#'   \item{area_in_strips}{The area of a field in prairie strips (in m2)}
+#'   \item{hectares_in_strips}{The area of a field in prairie strips (ha)}
 #'   \item{seeding_method}{What kind of equipment was used to seed the strip}
 #'   \item{seed_source}{Where the seed mix was purchased}
 #'   \item{species_seeded}{The number of species in the seed mix}
@@ -30,7 +30,7 @@
 #' @format A data frame with 141 rows and 5 variables:
 #' \describe{
 #'   \item{year}{The year that the stripID was generated.}
-#'   \item{stripID}{A numerical identifie for the strip. Each identifier begins at 1 for a given site and can be read as 
+#'   \item{stripID}{A numerical identifier for the strip. Each identifier begins at 1 for a given site and can be read as 
 #'   "siteID_stripID"}
 #'   \item{siteID}{A unique 3 letter code for the site}
 #'   \item{area}{Area of the strip (m^2^)}

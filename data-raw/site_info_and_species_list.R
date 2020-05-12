@@ -12,8 +12,9 @@ all_site_info <- read_csv("all_site_info.csv") %>%
     # adding age based on age at January 1st 2020
          age_days = interval(date_seeded, lubridate::dmy("01-01-2020")),
          age_yrs  = round(time_length(age_days, unit = "year"), 1),
-    # convert area to acres
-         acres_in_strips = area_in_strips*0.000247105,
+    # convert area to acres/hectares
+         #acres_in_strips = area_in_strips*0.000247105, # getting rid of non-SI unit
+         hectares_in_strips = area_in_strips*0.0001,
     # lumping winter seeded sites (n = 2) with the fall     
          season_seeded  = dplyr::recode(season_seeded, 
                                         "winter" = "fall-winter",
